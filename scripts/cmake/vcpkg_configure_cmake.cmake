@@ -59,7 +59,7 @@
 ## * [poco](https://github.com/Microsoft/vcpkg/blob/master/ports/poco/portfile.cmake)
 ## * [opencv](https://github.com/Microsoft/vcpkg/blob/master/ports/opencv/portfile.cmake)
 function(vcpkg_configure_cmake)
-    cmake_parse_arguments(_csc 
+    cmake_parse_arguments(_csc
         "PREFER_NINJA;DISABLE_PARALLEL_CONFIGURE;NO_CHARSET_FLAG"
         "SOURCE_PATH;GENERATOR"
         "OPTIONS;OPTIONS_DEBUG;OPTIONS_RELEASE"
@@ -204,6 +204,8 @@ function(vcpkg_configure_cmake)
             set(VCPKG_CHAINLOAD_TOOLCHAIN_FILE "${SCRIPTS}/toolchains/osx.cmake")
         elseif(VCPKG_CMAKE_SYSTEM_NAME STREQUAL "FreeBSD")
             set(VCPKG_CHAINLOAD_TOOLCHAIN_FILE "${SCRIPTS}/toolchains/freebsd.cmake")
+        elseif(VCPKG_CMAKE_SYSTEM_NAME STREQUAL "MinGW")
+            set(VCPKG_CHAINLOAD_TOOLCHAIN_FILE "${SCRIPTS}/toolchains/mingw.cmake")
         endif()
     endif()
 
