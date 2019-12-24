@@ -120,9 +120,9 @@ namespace vcpkg
 
         auto err = parser.error_info(spgh->name);
         if (err)
-            return std::move(err);
+            return err;
         else
-            return std::move(spgh);
+            return spgh;
     }
 
     static ParseExpected<FeatureParagraph> parse_feature_paragraph(RawParagraph&& fields)
@@ -139,9 +139,9 @@ namespace vcpkg
 
         auto err = parser.error_info(fpgh->name);
         if (err)
-            return std::move(err);
+            return err;
         else
-            return std::move(fpgh);
+            return fpgh;
     }
 
     ParseExpected<SourceControlFile> SourceControlFile::parse_control_file(
@@ -171,7 +171,7 @@ namespace vcpkg
                 return std::move(maybe_feature).error();
         }
 
-        return std::move(control_file);
+        return control_file;
     }
 
     Optional<const FeatureParagraph&> SourceControlFile::find_feature(const std::string& featurename) const
@@ -285,9 +285,9 @@ namespace vcpkg
         }
 
         if (unrecognized.empty())
-            return std::move(ret);
+            return ret;
         else
-            return std::move(unrecognized);
+            return unrecognized;
     }
 
     bool Supports::is_supported(Architecture arch, Platform plat, Linkage crt, ToolsetVersion tools)
