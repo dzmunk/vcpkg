@@ -2,13 +2,21 @@
 
 #include <vcpkg/base/expected.h>
 
+#if USE_STD_FILESYSTEM
+#include <filesystem>
+#else
 #define _SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING
 #include <experimental/filesystem>
+#endif
 
 namespace fs
 {
-    namespace stdfs = std::experimental::filesystem;
-
+    #if USE_STD_FILESYSTEM
+        namespace stdfs = std::filesystem;
+    #else
+        namespace stdfs = std::experimental::filesystem;
+    #endif
+    
     using stdfs::copy_options;
     using stdfs::path;
     using stdfs::perms;
